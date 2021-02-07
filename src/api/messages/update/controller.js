@@ -32,11 +32,11 @@ const formatMessages = (m) => {
       return conversations
       // if it's not last item split or continue
     } else if ( message.convo_id !== array[index+1].convo_id ) {
-        conversations.push({
+      conversations.convoId = {
           convoId: message.convo_id,
           nickname: message.nickname ? message.nickname : message.convo_id,
           messages: array.slice(lastUsedIndex, index+1)
-        })
+        }
         lastUsedIndex = index + 1
     } else {}
   })
