@@ -1,6 +1,6 @@
 const messenger = require('./model')
 
-exports.receive = async function (To, from, nickname, message) {
+exports.receive = async function (from, nickname = from, message) {
   // currently only supports **ONE USER**
   // normally each user will need their own number, so this would use the 'to' property
   // and check the database to find their proper user_id

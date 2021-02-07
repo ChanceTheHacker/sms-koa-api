@@ -3,8 +3,8 @@ const controller = require('./controller')
 
 const router = Router()
 router.post('/', async ctx => {
-  const { From, Body: message, To} = ctx.request.body
-  const success = await controller.receive(To, from, nickname = "me", message)
+  const { from, Body: message, nickname} = ctx.request.body
+  const success = await controller.receive(from, nickname, message)
   if (success){
     // if you give a response, twilio replies to the text with it...
     // ctx.status = 200
