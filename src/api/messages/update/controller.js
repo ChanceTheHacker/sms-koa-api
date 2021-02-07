@@ -19,8 +19,6 @@ const formatMessages = (m) => {
   let lastUsedIndex = 0
   const conversations = []
   m.sort(function(a, b){
-    console.log(a)
-    console.log(b)
     return a - b
   })
   // map through all the messages sorted by their convo ID
