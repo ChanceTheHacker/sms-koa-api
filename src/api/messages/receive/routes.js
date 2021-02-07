@@ -7,6 +7,7 @@ router.post('/', async ctx => {
   const success = await controller.receive(from, nickname, message)
   if (success){
     // if you give a response, twilio replies to the text with it...
+    // because of this there is no confirmation of success
     // ctx.status = 200
     // ctx.body = "Success"
   } else {

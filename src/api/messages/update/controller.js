@@ -17,6 +17,9 @@ const update = require('./model')
 // Really regret doing this and needs to be fixed in future...
 const formatMessages = (m) => {
   let lastUsedIndex = 0
+  // hacky way of doing this, ought to be checked in the map
+  // tracking is just to make sure to only fetch the new info when sync is run
+  const tracking = m.length
   const conversations = []
   m.sort(function(a, b){
     return a - b
@@ -32,6 +35,7 @@ const formatMessages = (m) => {
       conversations.push({
         convoId: message.convo_id,
         nickname: message.nickname ? message.nickname : message.convo_id,
+        tracking: tracking,
         messages: array.slice(lastUsedIndex)
       })
       return conversations
@@ -40,6 +44,7 @@ const formatMessages = (m) => {
         conversations.push({
           convoId: message.convo_id,
           nickname: message.nickname ? message.nickname : message.convo_id,
+          tracking: tracking,
           messages: array.slice(lastUsedIndex, index+1)
         })
     } else {}

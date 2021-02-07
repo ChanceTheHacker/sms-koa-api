@@ -9,11 +9,6 @@ exports.receive = async function (from, nickname = from, message) {
   // get corresponding user_id using the "to"(to_phone) property
   const { id } = await messenger.provideFirstUserId()
 
-  // remove the plus signs
-  // const to = To.replace('+', '')
-  // from = `+${from}`
-
-  // console.log({id, from, nickname, message})
 
   const { user_id: returned_id } = await messenger.receive(id, from, nickname, message)
   // destructure & renames return property and checks against sent property
