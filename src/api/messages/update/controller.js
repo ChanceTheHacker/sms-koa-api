@@ -18,7 +18,11 @@ const update = require('./model')
 const formatMessages = (m) => {
   let lastUsedIndex = 0
   const conversations = []
-  m.sort(function(a, b){return a.convo_id - b.convo_id})
+  m.sort(function(a, b){
+    console.log(a)
+    console.log(b)
+    return a - b
+  })
   // map through all the messages sorted by their convo ID
   // if the next message in array has a different convo ID, 
   // split array into it's own object
