@@ -46,7 +46,7 @@ const formatMessages = (m) => {
         })
     } else {}
   })
-  return m
+  return conversations
 }
 
 exports.initialize = async function (id) {
