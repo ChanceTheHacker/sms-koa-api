@@ -47,6 +47,7 @@ const formatMessages = (m) => {
           tracking: tracking,
           messages: array.slice(lastUsedIndex, index+1)
         })
+        lastUsedIndex = index + 1
     } else {}
   })
   return conversations
