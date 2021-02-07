@@ -17,7 +17,7 @@ exports.start = async function () {
 
 this.client = new Client({
   connectionString: process.env.DATABASE_URL || 'postgresql://postgres:@localhost:5432/koaapi',
-    ssl: process.env.DATABASE_URL ? true : false
+    ssl: {rejectUnauthorized: false}
 });
 
 this.client.connect();
