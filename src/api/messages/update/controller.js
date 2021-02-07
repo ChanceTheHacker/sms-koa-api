@@ -27,16 +27,22 @@ const formatMessages = (m) => {
   // if the next message in array has a different convo ID, 
   // split array into it's own object
 
-  // m.map ((message, index, array) => {
-  //   if ( message.convo_id !== array[index+1].convo_id ) {
-  //       conversations.push({
-  //         convoId: message.convo_id,
-  //         nickname: message.nickname ? message.nickname : message.convo_id,
-  //         messages: array.slice(lastUsedIndex, index+1)
-  //       })
-  //   } else {}
-  //   return conversations
-  // })
+  m.map ((message, index, array) => {
+    if (index + 1 > array.length){
+      conversations.push({
+        convoId: message.convo_id,
+        nickname: message.nickname ? message.nickname : message.convo_id,
+        messages: array.slice(lastUsedIndex)
+      })
+    } else if ( message.convo_id !== array[index+1].convo_id ) {
+        conversations.push({
+          convoId: message.convo_id,
+          nickname: message.nickname ? message.nickname : message.convo_id,
+          messages: array.slice(lastUsedIndex, index+1)
+        })
+    } else {}
+    return conversations
+  })
   return m
 }
 
