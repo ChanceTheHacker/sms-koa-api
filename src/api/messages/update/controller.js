@@ -26,7 +26,7 @@ const formatMessages = (m) => {
   // map through all the messages sorted by their convo ID
   // if the next message in array has a different convo ID, 
   // split array into it's own object
-  
+
   // m.map ((message, index, array) => {
   //   if ( message.convo_id !== array[index+1].convo_id ) {
   //       conversations.push({
@@ -37,6 +37,7 @@ const formatMessages = (m) => {
   //   } else {}
   //   return conversations
   // })
+  return m
 }
 
 exports.initialize = async function (id) {
