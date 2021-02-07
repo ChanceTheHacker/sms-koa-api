@@ -1,15 +1,15 @@
 const update = require('./model')
 
-function compare(a, b) {
-  if (a.convo_id < b.convo_id) {
-    return -1;
-  }
-  if (a.convo_id > b.convo_id ) {
-    return 1;
-  }
-  // a must be equal to b
-  return 0;
-}
+// function compare(a, b) {
+//   if (a.convo_id < b.convo_id) {
+//     return -1;
+//   }
+//   if (a.convo_id > b.convo_id ) {
+//     return 1;
+//   }
+//   // a must be equal to b
+//   return 0;
+// }
 
 // this breaks up the messages into objects grouped by the phone number
 // Probably should have just made new tables for each message to begin with
@@ -18,7 +18,7 @@ function compare(a, b) {
 const formatMessages = (m) => {
   let lastUsedIndex = 0
   const conversations = []
-  m.sort(compare(a, b))
+  m.sort(function(a, b){return a.convo_id - b.convo_id})
   // map through all the messages sorted by their convo ID
   // if the next message in array has a different convo ID, 
   // split array into it's own object
