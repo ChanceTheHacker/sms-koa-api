@@ -5,9 +5,7 @@ const update = require('./model')
 // now dealing with lots of slow sorting and frustrations
 // Really regret doing this and needs to be fixed in future...
 const formatMessages = (messages) => {
-  messages.map (message => {
-
-  })
+  messages.map (message => message)
 }
 
 exports.initialize = async function (id) {
