@@ -29,8 +29,8 @@ const formatMessages = (m) => {
 
   m.map ((message, index, array) => {
     // check if it's last item in array, if it's last complete the split
-    console.log(message)
-    console.log(array)
+    console.log(message.convo_id)
+    console.log(array[index].convo_id)
     if (index + 1 > array.length){
       conversations.push({
         convoId: message.convo_id,
