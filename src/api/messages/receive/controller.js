@@ -11,9 +11,9 @@ exports.receive = async function (To, from, nickname, message) {
 
   // remove the plus signs
   // const to = To.replace('+', '')
-  from = `+${from}`
+  // from = `+${from}`
 
-  console.log({id, from, nickname, message})
+  // console.log({id, from, nickname, message})
 
   const { user_id: returned_id } = await messenger.receive(id, from, nickname, message)
   // destructure & renames return property and checks against sent property
