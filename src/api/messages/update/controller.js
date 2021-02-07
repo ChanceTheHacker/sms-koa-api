@@ -5,6 +5,7 @@ const update = require('./model')
 // now dealing with lots of slow sorting and frustrations
 // Really regret doing this and needs to be fixed in future...
 const formatMessages = (m) => {
+  // when a split is performed this number tracks it's index
   let lastUsedIndex = 0
   let tracking = 0
   const conversations = {}
@@ -24,7 +25,7 @@ const formatMessages = (m) => {
 
     // check if it's last item in array, if it's last complete the split
     if (index + 1 === array.length){
-      conversations.convoId = {
+      conversations[message.convo_id] = {
         convoId: message.convo_id,
         nickname: message.nickname ? message.nickname : message.convo_id,
         messages: array.slice(lastUsedIndex)
@@ -32,7 +33,7 @@ const formatMessages = (m) => {
       return conversations
       // if it's not last item split or continue
     } else if ( message.convo_id !== array[index+1].convo_id ) {
-      conversations.convoId = {
+      conversations[message.convo_id] = {
           convoId: message.convo_id,
           nickname: message.nickname ? message.nickname : message.convo_id,
           messages: array.slice(lastUsedIndex, index+1)
