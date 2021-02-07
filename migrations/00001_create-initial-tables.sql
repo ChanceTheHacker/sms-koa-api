@@ -18,5 +18,6 @@ CREATE TABLE messages (
   to_phone CHAR(11) NOT NULL,
   CONSTRAINT chk_to CHECK (to_phone not like '%[^0-9]%'),
   nickname varchar(100),
+  convo_id CHAR(11) NOT NULL,
   message varchar(250) NOT NULL
 );

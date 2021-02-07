@@ -4,10 +4,10 @@ exports.send = async function (id, to, nickname, message) {
   const from = process.env.TWILIO_PHONE_NUMBER 
   return db.queryOne (
     `
-    INSERT INTO messages (user_id, from_phone, to_phone, nickname, message) 
-    VALUES ($1, $2, $3, $4, $5) RETURNING *
+    INSERT INTO messages (user_id, from_phone, to_phone, nickname, message, convo_id) 
+    VALUES ($1, $2, $3, $4, $5, $6) RETURNING *
     `, 
-    [id, from, to, nickname, message]
+    [id, from, to, nickname, message, to]
   )
 }
 
