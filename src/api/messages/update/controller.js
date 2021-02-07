@@ -21,7 +21,9 @@ const formatMessages = (m) => {
 
   m.map ((message, index, array) => {
     // update tracking if it's higher
-    conversations.tracking = (parseInt(message.tracking) > parseInt(tracking)) ? message.tracking : tracking
+    if (parseInt(message.tracking) > parseInt(tracking)){
+      conversations.tracking = message.tracking
+    }
 
     // check if it's last item in array, if it's last complete the split
     if (index + 1 === array.length){
