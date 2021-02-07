@@ -10,10 +10,12 @@ const formatMessages = (messages) => {
 
 exports.initialize = async function (id) {
   const messages = await update.initialize(id)
-  return formatMessages(messages)
+  // return formatMessages(messages)
+  return messages
 }
 
 exports.sync = async function (tracking, id) {
   const messages = await update.sync(tracking, id)
-  return formatMessages(messages)
+  // return formatMessages(messages)
+  return messages
 }
