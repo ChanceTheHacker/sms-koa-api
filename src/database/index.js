@@ -1,16 +1,27 @@
-const { Pool } = require('pg')
+// const { Pool } = require('pg')
+const { Client } = require('pg');
 const migrate = require('./migrations')
 
 exports.start = async function () {
-  const host = process.env.DATABASE_URL
-  const user = process.env.PGUSER
-  const port = parseInt(process.env.PGPORT)
-  const password = process.env.PGPASSWORD
-  const database = process.env.PGDATABASE
+  // const host = process.env.DATABASE_URL
+  // const user = process.env.PGUSER
+  // const port = parseInt(process.env.PGPORT)
+  // const password = process.env.PGPASSWORD
+  // const database = process.env.PGDATABASE
   
-  this.pool = new Pool({ user, host, database, password, port })
-  this.client = await this.pool.connect()
-  await migrate.run(this.client)
+  // this.pool = new Pool({ user, host, database, password, port })
+  // this.client = await this.pool.connect()
+  
+
+
+
+this.client = new Client({
+  connectionString: process.env.DATABASE_URL || 'postgresql://postgres:@localhost:5432/koaapi',
+    ssl: process.env.DATABASE_URL ? true : false
+});
+
+this.client.connect();
+await migrate.run(this.client)
 }
 
 exports.close = async function () {
