@@ -28,12 +28,15 @@ const formatMessages = (m) => {
   // split array into it's own object
 
   m.map ((message, index, array) => {
+    // check if it's last item in array, if it's last complete the split
     if (index + 1 > array.length){
       conversations.push({
         convoId: message.convo_id,
         nickname: message.nickname ? message.nickname : message.convo_id,
         messages: array.slice(lastUsedIndex)
       })
+      return conversations
+      // if it's not last item split or continue
     } else if ( message.convo_id !== array[index+1].convo_id ) {
         conversations.push({
           convoId: message.convo_id,
@@ -41,7 +44,6 @@ const formatMessages = (m) => {
           messages: array.slice(lastUsedIndex, index+1)
         })
     } else {}
-    return conversations
   })
   return m
 }
