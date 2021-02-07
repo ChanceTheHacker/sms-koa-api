@@ -1,21 +1,45 @@
 const update = require('./model')
 
+function compare(a, b) {
+  if (a.convo_id < b.convo_id) {
+    return -1;
+  }
+  if (a.convo_id > b.convo_id ) {
+    return 1;
+  }
+  // a must be equal to b
+  return 0;
+}
+
 // this breaks up the messages into objects grouped by the phone number
 // Probably should have just made new tables for each message to begin with
 // now dealing with lots of slow sorting and frustrations
 // Really regret doing this and needs to be fixed in future...
-const formatMessages = (messages) => {
-  messages.map (message => message)
+const formatMessages = (m) => {
+  let lastUsedIndex = 0
+  const conversations = []
+  m.sort(compare(a, b))
+  // map through all the messages sorted by their convo ID
+  // if the next message in array has a different convo ID, 
+  // split array into it's own object
+  m.map ((message, index, array) => {
+    if ( message.convo_id !== array[index+1].convo_id ) {
+        conversations.push({
+          convoId: message.convo_id,
+          nickname: message.nickname ? message.nickname : message.convo_id,
+          messages: array.slice(lastUsedIndex, index+1)
+        })
+    } else {}
+    return conversations
+  })
 }
 
 exports.initialize = async function (id) {
   const messages = await update.initialize(id)
-  // return formatMessages(messages)
-  return messages
+  return formatMessages(messages)
 }
 
 exports.sync = async function (tracking, id) {
   const messages = await update.sync(tracking, id)
-  // return formatMessages(messages)
-  return messages
+  return formatMessages(messages)
 }

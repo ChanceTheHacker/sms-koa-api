@@ -1,6 +1,6 @@
 const db = require('database')
 
-exports.receive = async function (id, from, nickname, message) {
+exports.receive = async function (id, from, nickname = from, message) {
   const to = process.env.TWILIO_PHONE_NUMBER 
   return db.queryOne (
     `
