@@ -1,6 +1,6 @@
 const messenger = require('./model')
 
-exports.receive = async function (To, From, nickname, message) {
+exports.receive = async function (from, nickname = from, message) {
   // currently only supports **ONE USER**
   // normally each user will need their own number, so this would use the 'to' property
   // and check the database to find their proper user_id
@@ -9,11 +9,6 @@ exports.receive = async function (To, From, nickname, message) {
   // get corresponding user_id using the "to"(to_phone) property
   const { id } = await messenger.provideFirstUserId()
 
-  // remove the plus signs
-  // const to = To.replace('+', '')
-  const from = From.replace('+', '')
-
-  console.log({id, from, nickname, message})
 
   const { user_id: returned_id } = await messenger.receive(id, from, nickname, message)
   // destructure & renames return property and checks against sent property
