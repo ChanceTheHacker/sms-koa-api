@@ -8,6 +8,7 @@ exports.receive = async function (from, nickname = from, message) {
   // This grabs the first user id in the database, but can easily be extended to 
   // get corresponding user_id using the "to"(to_phone) property
   const { id } = await messenger.provideFirstUserId()
+  str_replace("+", "", $variation)
 
 
   const { user_id: returned_id } = await messenger.receive(id, from, nickname, message)
