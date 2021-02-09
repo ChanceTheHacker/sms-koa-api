@@ -1,7 +1,7 @@
 const Koa = require('koa')
 const router = require('routing')
 const bodyParser = require('koa-bodyparser')
-const cors = require('koa-cors')
+const cors = require('@koa/cors');
 const ResponseTime = require('koa-response-time')
 const db = require('database')
 // Didn't implement oauth since this is just a dummy app
